@@ -121,7 +121,8 @@ jobs:
       - name: Install DiagnosticAssist dependencies
         run: |
           pip install fastapi uvicorn pydantic \
-            requests numpy python-dotenv httpx
+            requests numpy python-dotenv httpx \
+            python-multipart
 
       - name: Start DiagnosticAssist app
         run: |
