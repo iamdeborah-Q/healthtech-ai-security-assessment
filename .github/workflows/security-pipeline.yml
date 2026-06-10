@@ -120,7 +120,6 @@ jobs:
 
       - name: Install DiagnosticAssist dependencies
         run: |
-          cd diagnosticassist
           pip install fastapi uvicorn pydantic \
             requests numpy python-dotenv httpx
 
@@ -128,10 +127,17 @@ jobs:
         run: |
           cd diagnosticassist
           uvicorn app:app --host 0.0.0.0 --port 8000 &
-          sleep 10
-          # Wait for app to be ready
-          for i in $(seq 1 12); do curl -sf http://localhost:8000/health && break || sleep 5; done
-          curl http://localhost:8000/health
+          echo "Waiting for DiagnosticAssist to be ready..."
+          for i in $(seq 1 15); do
+            if curl -sf http://localhost:8000/health; then
+              echo "App is ready after $i attempts"
+              exit 0
+            fi
+            echo "Attempt $i: not ready yet, waiting 3s..."
+            sleep 3
+          done
+          echo "ERROR: App failed to start after 45 seconds"
+          exit 1
 
       - name: Install security test tools
         run: |
