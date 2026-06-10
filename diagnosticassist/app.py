@@ -161,3 +161,16 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": "An internal error occurred"}
         # NOTE: No stack trace, no exception message exposed
     )
+
+
+# ── Prometheus metrics endpoint ──────────────────────────────
+from prometheus_client import make_wsgi_app, generate_latest, CONTENT_TYPE_LATEST
+from fastapi.responses import Response
+
+@app.get("/metrics")
+async def metrics():
+    """Prometheus metrics endpoint — scraped every 15s by Prometheus."""
+    return Response(
+        content=generate_latest(),
+        media_type=CONTENT_TYPE_LATEST
+    )

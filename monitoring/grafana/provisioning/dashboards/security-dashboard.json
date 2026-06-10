@@ -1,0 +1,246 @@
+{
+  "title": "DiagnosticAssist — AI Security Dashboard",
+  "uid": "diagnosticassist-security",
+  "version": 1,
+  "schemaVersion": 36,
+  "refresh": "15s",
+  "time": { "from": "now-1h", "to": "now" },
+  "tags": ["security", "hipaa", "ai"],
+  "panels": [
+    {
+      "id": 1,
+      "title": "Auth Failures (last 1h)",
+      "type": "stat",
+      "gridPos": { "x": 0, "y": 0, "w": 4, "h": 4 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "yellow", "value": 10 },
+              { "color": "red", "value": 50 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "increase(diagnosticassist_auth_failures_total[1h])",
+          "legendFormat": "Auth Failures"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Prompt Injection Attempts (last 1h)",
+      "type": "stat",
+      "gridPos": { "x": 4, "y": 0, "w": 4, "h": 4 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "yellow", "value": 5 },
+              { "color": "red", "value": 20 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "increase(diagnosticassist_prompt_injection_attempts_total[1h])",
+          "legendFormat": "Injection Attempts"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "PHI Leak Detections (last 1h)",
+      "type": "stat",
+      "gridPos": { "x": 8, "y": 0, "w": 4, "h": 4 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "red", "value": 1 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "increase(diagnosticassist_phi_leaks_detected_total[1h])",
+          "legendFormat": "PHI Leaks"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Adversarial Image Alerts (last 1h)",
+      "type": "stat",
+      "gridPos": { "x": 12, "y": 0, "w": 4, "h": 4 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "yellow", "value": 3 },
+              { "color": "red", "value": 10 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "increase(diagnosticassist_adversarial_images_detected_total[1h])",
+          "legendFormat": "Adversarial Alerts"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "MFA Bypass Attempts (last 1h)",
+      "type": "stat",
+      "gridPos": { "x": 16, "y": 0, "w": 4, "h": 4 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "red", "value": 1 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "increase(diagnosticassist_mfa_bypass_attempts_total[1h])",
+          "legendFormat": "MFA Bypass"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Total API Requests",
+      "type": "stat",
+      "gridPos": { "x": 20, "y": 0, "w": 4, "h": 4 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "steps": [
+              { "color": "blue", "value": 0 }
+            ]
+          }
+        }
+      },
+      "targets": [
+        {
+          "expr": "diagnosticassist_http_requests_total",
+          "legendFormat": "Total Requests"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Auth Failures Over Time",
+      "type": "timeseries",
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 }
+        }
+      },
+      "targets": [
+        {
+          "expr": "rate(diagnosticassist_auth_failures_total[5m])",
+          "legendFormat": "Auth Failures/sec"
+        },
+        {
+          "expr": "rate(diagnosticassist_mfa_bypass_attempts_total[5m])",
+          "legendFormat": "MFA Bypass/sec"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "AI Security Events Over Time",
+      "type": "timeseries",
+      "gridPos": { "x": 12, "y": 4, "w": 12, "h": 8 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 }
+        }
+      },
+      "targets": [
+        {
+          "expr": "rate(diagnosticassist_prompt_injection_attempts_total[5m])",
+          "legendFormat": "Prompt Injection/sec"
+        },
+        {
+          "expr": "rate(diagnosticassist_adversarial_images_detected_total[5m])",
+          "legendFormat": "Adversarial Images/sec"
+        },
+        {
+          "expr": "rate(diagnosticassist_phi_leaks_detected_total[5m])",
+          "legendFormat": "PHI Leaks/sec"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Security Events by Type",
+      "type": "piechart",
+      "gridPos": { "x": 0, "y": 12, "w": 8, "h": 8 },
+      "options": { "pieType": "donut" },
+      "targets": [
+        {
+          "expr": "diagnosticassist_auth_failures_total",
+          "legendFormat": "Auth Failures"
+        },
+        {
+          "expr": "diagnosticassist_prompt_injection_attempts_total",
+          "legendFormat": "Prompt Injections"
+        },
+        {
+          "expr": "diagnosticassist_phi_leaks_detected_total",
+          "legendFormat": "PHI Leaks"
+        },
+        {
+          "expr": "diagnosticassist_adversarial_images_detected_total",
+          "legendFormat": "Adversarial Images"
+        },
+        {
+          "expr": "diagnosticassist_mfa_bypass_attempts_total",
+          "legendFormat": "MFA Bypasses"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "HTTP Request Rate by Endpoint",
+      "type": "timeseries",
+      "gridPos": { "x": 8, "y": 12, "w": 16, "h": 8 },
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "palette-classic" },
+          "custom": { "lineWidth": 2, "fillOpacity": 10 }
+        }
+      },
+      "targets": [
+        {
+          "expr": "rate(diagnosticassist_http_requests_total[5m])",
+          "legendFormat": "{{endpoint}}"
+        }
+      ]
+    }
+  ]
+}
