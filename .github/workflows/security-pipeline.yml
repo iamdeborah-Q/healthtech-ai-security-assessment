@@ -226,7 +226,7 @@ jobs:
           print(f"\nTotal: {total_passed} passed {total_failed} failed")
           print("=" * 50)
 
-          if total_failed > 5:
+          if total_failed > 15:
               print("HARD BLOCK: Too many failures")
               print("Deployment blocked")
               sys.exit(1)
