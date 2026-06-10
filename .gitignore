@@ -1,0 +1,12 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Results
+results/*.xml
+
+# Environment
+.env
+*.env
