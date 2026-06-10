@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "user_id": "USR-001",
+      "username": "dr.johnson",
+      "password_hash": "hashed_password_1",
+      "role": "radiologist",
+      "hospital_network": "network_a",
+      "mfa_enabled": true,
+      "permissions": ["view_images", "query_llm", "view_own_patients"]
+    },
+    {
+      "user_id": "USR-002",
+      "username": "dr.chen",
+      "password_hash": "hashed_password_2",
+      "role": "radiologist",
+      "hospital_network": "network_b",
+      "mfa_enabled": true,
+      "permissions": ["view_images", "query_llm", "view_own_patients"]
+    },
+    {
+      "user_id": "USR-003",
+      "username": "admin.networkA",
+      "password_hash": "hashed_password_3",
+      "role": "hospital_admin",
+      "hospital_network": "network_a",
+      "mfa_enabled": true,
+      "permissions": ["view_images", "query_llm", "view_all_patients", "manage_users"]
+    },
+    {
+      "user_id": "USR-004",
+      "username": "api.integration",
+      "password_hash": "hashed_password_4",
+      "role": "api_client",
+      "hospital_network": "network_c",
+      "mfa_enabled": false,
+      "permissions": ["view_images", "submit_images"]
+    }
+  ],
+  "tokens": {
+    "valid_token_network_a": {
+      "user_id": "USR-001",
+      "role": "radiologist",
+      "network": "network_a",
+      "expires": "2099-12-31"
+    },
+    "valid_token_network_b": {
+      "user_id": "USR-002",
+      "role": "radiologist",
+      "network": "network_b",
+      "expires": "2099-12-31"
+    },
+    "admin_token_network_a": {
+      "user_id": "USR-003",
+      "role": "hospital_admin",
+      "network": "network_a",
+      "expires": "2099-12-31"
+    }
+  }
+}

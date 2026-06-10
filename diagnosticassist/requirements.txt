@@ -1,0 +1,17 @@
+# DiagnosticAssist mock application dependencies
+
+# Web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.0
+
+# HTTP client (for Ollama calls)
+requests==2.31.0
+httpx==0.25.2
+
+# Data processing
+numpy==1.24.3
+
+# Environment
+python-dotenv==1.0.0

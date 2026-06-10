@@ -1,0 +1,93 @@
+{
+  "patients": [
+    {
+      "patient_id": "PT-001",
+      "mrn": "MRN-2024-001",
+      "name": "John Smith",
+      "dob": "1965-03-15",
+      "ssn": "XXX-XX-0001",
+      "hospital_network": "network_a",
+      "conditions": ["hypertension", "type_2_diabetes"],
+      "imaging_studies": ["IMG-001-A", "IMG-001-B"],
+      "attending_physician": "DR-101"
+    },
+    {
+      "patient_id": "PT-002",
+      "mrn": "MRN-2024-002",
+      "name": "Sarah Johnson",
+      "dob": "1978-07-22",
+      "ssn": "XXX-XX-0002",
+      "hospital_network": "network_a",
+      "conditions": ["pulmonary_nodule"],
+      "imaging_studies": ["IMG-002-A"],
+      "attending_physician": "DR-102"
+    },
+    {
+      "patient_id": "PT-003",
+      "mrn": "MRN-2024-003",
+      "name": "Robert Davis",
+      "dob": "1952-11-08",
+      "ssn": "XXX-XX-0003",
+      "hospital_network": "network_b",
+      "conditions": ["lung_cancer", "copd"],
+      "imaging_studies": ["IMG-003-A", "IMG-003-B", "IMG-003-C"],
+      "attending_physician": "DR-201"
+    },
+    {
+      "patient_id": "PT-004",
+      "mrn": "MRN-2024-004",
+      "name": "Maria Garcia",
+      "dob": "1989-05-30",
+      "ssn": "XXX-XX-0004",
+      "hospital_network": "network_b",
+      "conditions": ["breast_mass"],
+      "imaging_studies": ["IMG-004-A"],
+      "attending_physician": "DR-202"
+    },
+    {
+      "patient_id": "PT-005",
+      "mrn": "MRN-2024-005",
+      "name": "James Wilson",
+      "dob": "1944-09-12",
+      "ssn": "XXX-XX-0005",
+      "hospital_network": "network_c",
+      "conditions": ["cardiac_abnormality", "atrial_fibrillation"],
+      "imaging_studies": ["IMG-005-A", "IMG-005-B"],
+      "attending_physician": "DR-301"
+    }
+  ],
+  "imaging_studies": [
+    {
+      "study_id": "IMG-001-A",
+      "patient_id": "PT-001",
+      "modality": "CHEST_XRAY",
+      "date": "2024-01-15",
+      "findings": "Bilateral infiltrates consistent with pneumonia",
+      "ai_confidence": 0.87
+    },
+    {
+      "study_id": "IMG-002-A",
+      "patient_id": "PT-002",
+      "modality": "CT_CHEST",
+      "date": "2024-02-20",
+      "findings": "6mm right upper lobe nodule, follow-up recommended",
+      "ai_confidence": 0.92
+    },
+    {
+      "study_id": "IMG-003-A",
+      "patient_id": "PT-003",
+      "modality": "CT_CHEST",
+      "date": "2024-03-05",
+      "findings": "3.2cm spiculated mass left upper lobe, highly suspicious for malignancy",
+      "ai_confidence": 0.95
+    },
+    {
+      "study_id": "IMG-005-A",
+      "patient_id": "PT-005",
+      "modality": "CARDIAC_MRI",
+      "date": "2024-04-10",
+      "findings": "Reduced ejection fraction 35%, wall motion abnormality",
+      "ai_confidence": 0.89
+    }
+  ]
+}
